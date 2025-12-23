@@ -1,0 +1,53 @@
+
+/*
+
+#include <stdio.h>
+
+void main(int argc[],char * argv[])
+{
+    int k;
+
+    for(k= 0;k<argc;++k)
+    printf("argv[%d]: %s\n",k,argv[k]);
+
+
+return 0;
+}
+
+*/
+
+
+// banka dosyasının içine müşterilerin verilerini yazma 
+
+
+#include <stdio.h>
+
+
+int main()
+{
+    FILE * cfPtr;
+    unsigned int account;
+    char name[50];
+    double balance;
+    if ((cfPtr =fopen("clients.txt","w")) == NULL)
+    puts("file can not be opened");
+
+    else{
+
+
+        puts("Enter account, name and balance");
+        printf("%s", "?");
+
+        scanf("%d%49s%lf",  &account ,name, &balance);
+
+        while(!feof(stdin))
+        {
+            fprintf(cfPtr,"%d %s %.2lf\n",account, name, balance);
+            printf("%s", "?");
+            scanf("%d%49s%lf", &account, name,&balance);
+
+        }
+        fclose(cfPtr);
+    }
+    return 0;
+}
