@@ -1,0 +1,177 @@
+//1.sayfa
+#include <stdio.h>
+#include <math.h>
+
+//2.sayfa
+void kareIslemleri();
+void dikdortgenIslemleri();
+void ucgenIslemleri();
+void cemberIslemleri();
+void cokgenIslemleri();
+void menuGoster();
+//3.sayfa
+int main() {
+    int secim;
+
+    printf("  GEOMETRİK HESAP MAKINESI  \n");
+   
+    do {
+        menuGoster();
+        printf("Seciminiz: ");
+        scanf("%d", &secim);
+
+        switch (secim) {
+            case 1: kareIslemleri(); break;
+            case 2: dikdortgenIslemleri(); break;
+            case 3: ucgenIslemleri(); break;
+            case 4: cemberIslemleri(); break;
+            case 5: cokgenIslemleri(); break;
+            case 0: printf("Cikis Secenegini Sectiginiz Icin Kod Sonlardirildi\n"); break;
+            default: printf("Hatali secim!\n");
+        }
+    } while (secim != 0);
+
+    
+}
+//4.sayfa
+void menuGoster() {
+    printf("\n--- ANA MENU ---\n");
+    printf("1. Kare\n");
+    printf("2. Dikdortgen\n");
+    printf("3. Ucgen\n");
+    printf("4. Cember / Daire\n");
+    printf("5. Duzgun Cokgen\n");
+    printf("0. Cikis\n");
+}
+//5.sayfa
+void kareIslemleri() {
+    double a;
+    printf("\n-> Kare Secildi\n");
+
+    do {
+        printf("Kenar uzunlugunu giriniz: ");
+        scanf("%lf", &a);
+        if (a <= 0) {
+            printf("Hata: Kenar Pozitif Olmali!\n");
+        }
+    } while (a <= 0); 
+
+    printf("Alan: %.2f\n", a * a);
+    printf("Cevre: %.2f\n", 4 * a);
+}
+//6.sayfa
+void dikdortgenIslemleri() {
+    double a, b;
+    printf("\n-> Dikdortgen Secildi\n");
+
+    do {
+        printf("1. kenar: ");
+        scanf("%lf", &a);
+        if (a <= 0) printf("Hata: Kenar Pozitif Olmali!\n");
+    } while (a <= 0);
+
+    do {
+        printf("2. kenar: ");
+        scanf("%lf", &b);
+        if (b <= 0) printf("Hata: Kenar Pozitif Olmali!\n");
+    } while (b <= 0);
+
+    printf("Alan: %.2f\n", a * b);
+    printf("Cevre: %.2f\n", 2 * (a + b));
+}
+//7.sayfa
+void ucgenIslemleri() {
+    int altSecim;
+    double a, b, c, h;
+    
+    printf("\n-> Ucgen Secildi\n");
+    printf("1. Alan Hesapla\n");
+    printf("2. Cevre Hesapla\n");
+    printf("Seciminiz: ");
+    scanf("%d", &altSecim);
+//8.sayfa
+    if (altSecim == 1) {
+        do {
+            printf("Taban uzunlugu: ");
+            scanf("%lf", &a);
+            if(a <= 0) printf("Hata: Taban Pozitif Olmali!\n");
+        } while(a <= 0);
+
+        do {
+            printf("Yukseklik: ");
+            scanf("%lf", &h);
+            if(h <= 0) printf("Hata: Yukseklik Pozitif Olmali!\n");
+        } while(h <= 0);
+
+        printf("Alan: %.2f\n", (a * h) / 2);
+//9.sayfa
+    } else if (altSecim == 2) {
+
+        do {
+            printf("1. Kenar: "); scanf("%lf", &a);
+            if(a <= 0) printf("Hata: Kenar Pozitif Olmali!\n");
+        } while(a <= 0);
+
+        do {
+            printf("2. Kenar: "); scanf("%lf", &b);
+            if(b <= 0) printf("Hata: Kenar Pozitif Olmali!\n");
+        } while(b <= 0);
+
+        do {
+            printf("3. Kenar: "); scanf("%lf", &c);
+            if(c <= 0) printf("Hata: Kenar Pozitif Olmali!\n");
+        } while(c <= 0);
+
+        printf("Cevre: %.2f\n", a + b + c);
+    } else {
+        printf("Hata: 1 ya da 2 Girilmesi Gerekiyor!\n");
+    }
+}
+//10.sayfa
+void cemberIslemleri() {
+    double r;
+    double PI = 3.141592;
+    printf("\n-> Cember Secildi\n");
+
+    do {
+        printf("Yaricap (r): ");
+        scanf("%lf", &r);
+        if (r <= 0) printf("Hata: Yaricap Pozitif Olmalidir.\n");
+    } while (r <= 0);
+    
+    printf("Alan: %.2f\n", PI * r * r);
+    printf("Cevre: %.2f\n", 2 * PI * r);
+}
+//11. sayfa
+void cokgenIslemleri() {
+    double n, a;
+    double PI = 3.141592;
+    
+    printf("\n-> Duzgun Cokgen Modu\n");
+    
+    do {
+        printf("Kenar sayisi (n): ");
+        scanf("%lf", &n);
+        
+        if (n != (int)n) {
+             printf("Hata: Kenar Sayisi Virgullu Olamaz! Lutfen Tam Sayi Giriniz.\n");
+        }
+        else if (n < 3) {
+             printf("Hata: En Az 3 Kenar Olmalidir.\n");
+        }
+    }
+//12.sayfa    
+        while (n < 3 || n != (int)n);
+
+    do {
+        printf("Bir kenar uzunlugu (a): ");
+        scanf("%lf", &a);
+        if (a <= 0) printf("Hata: Pozitif giriniz.\n");
+    } while (a <= 0);
+
+    double alan = (n * a * a) / (4 * tan(PI / n));
+    
+    printf("%.0f Kenarli Cokgen Sonuclari:\n", n);
+    printf("Alan: %.2f\n", alan);
+    printf("Cevre: %.2f\n", n * a);
+}
